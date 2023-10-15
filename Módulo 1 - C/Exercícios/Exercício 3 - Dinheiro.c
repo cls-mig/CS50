@@ -3,7 +3,6 @@
 float calcularMoedas(float valor)
 {
     int n = 0;
-    float rest;
 
     while (valor > 0)
     {
