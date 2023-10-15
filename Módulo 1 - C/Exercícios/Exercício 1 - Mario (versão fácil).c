@@ -29,7 +29,7 @@ int construtor()
 {
     int n;
 
-    // printf("Bem vindo ao Exercício 1.1 - Maria (versão fácil)!\nPrimeiro, digite a altura da pirâmide (um número entre 1 e 8)\n");
+    // printf("Bem vindo ao Exercício 1.1 - Mario (versão fácil)!\nPrimeiro, digite a altura da pirâmide (um número entre 1 e 8)\n");
     {
         printf("Altura: ");
         scanf("%i", &n);
