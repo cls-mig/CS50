@@ -24,7 +24,7 @@ int main()
         }
     }
 
-    printf("\nSua razão é igual a %f", (float) /*casting*/ x / (float) y);
+    printf("\nSua razão é igual a %f", /*casting*/ (float) x / (float) y);
     printf("\nVocê concorda com esse resultado? (Y/N)");
     scanf("%s", &resposta);
 
