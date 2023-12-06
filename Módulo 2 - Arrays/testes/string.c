@@ -1,20 +1,22 @@
 #include <stdio.h>
 #include <string.h>
 
-const int c = 30;
+const int c = 50;
 
 int main(void)
 {
-    char s[c];
+    char text[c];
 
     printf("Input: ");
-    scanf("%s", s);
-    printf("\nOutput: ");
-    int n = strlen(s);
+    scanf("%s", text);
+    // printf("\nOutput: ");
+    int n = strlen(text);
 
     // for (int i = 0; s[i] != '\0'; i++)
     for (int i = 0; i < n; i++)
     {
-        printf("%c", s[i]);
+        printf("\n%c", text[i]);
     }
+
+    return 0;
 }
