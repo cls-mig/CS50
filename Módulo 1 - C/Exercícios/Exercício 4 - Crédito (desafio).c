@@ -14,15 +14,15 @@ int main(void)
     long long int numCartao;
 
     printf("Number: ");
-    scanf("%lld", &numCartao);
+    scanf("%lli", &numCartao);
     // printf("numero: %lld\n", cartao);
 
-    long long int d = 10; // variável que multiplicada por 10 andará pelos dígitos do cartão
+    long long int d = 10; // variável que multiplicada por 10 percorre os dígitos do cartão
     long long int digitoCartao = 0; // variável que receberá durante o loop cada dígito do cartão
     int m = 0, somaDigitos = 0;
     int quantDigitos = 0;
 
-    int segDigito, priDigito;
+    int priDigito, segDigito;
     int inicioCartao;
 
     for (int i = 0; i < numCartao; i++)

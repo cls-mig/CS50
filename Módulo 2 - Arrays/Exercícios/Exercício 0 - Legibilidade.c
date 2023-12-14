@@ -44,7 +44,7 @@ int main (void)
         {
             letras++;
         } else
-        if (texto[i] == ' ')
+        if (texto[i] == ' ') // isspace(texto[i])
         {
             palavras++;
         }
