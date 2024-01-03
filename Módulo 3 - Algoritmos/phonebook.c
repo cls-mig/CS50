@@ -4,8 +4,8 @@
 // Quanto maior se tornam as aplicaçÕes, com novos recursos e funções, mais essa estrutura precisa estar visível para todas elas
 typedef struct
     {
-        char name[50];
-        char number[50];
+        char *name;
+        char *number;
     }
     person;
 
@@ -19,11 +19,11 @@ int main()
 {
     person people[2];
 
-    strcpy(people[0].name, "Carlos");
-    strcpy(people[1].name, "Gabriel");
+    people[0].name = "Carlos";
+    people[1].name = "Gabriel";
 
-    strcpy(people[0].number, "(21) 9 7231-0436");
-    strcpy(people[1].number, "(21) 9 6707-2434");
+    people[0].number = "(21) 9 7231-0436";
+    people[1].number = "(21) 9 6707-2434";
 
     for (int i = 0; i < 2; i++)
     {

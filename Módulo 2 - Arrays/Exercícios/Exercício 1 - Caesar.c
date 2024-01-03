@@ -10,9 +10,9 @@ int plaintext(int k)
     int chave = k;
     // printf("\nMinha chave: %i\n", chave);
 
-    char text[c];
+    char text[c]; // texto simples
     // char cipher[c];
-    int cipher[c];
+    int cipher[c]; // texto cifrado
 
     printf("\nplaintext: ");
     scanf("\n%1000[^\n]", text);
@@ -30,11 +30,11 @@ int plaintext(int k)
         {
             if (isupper(text[i]))
             {
-                text[i] -= 65;
+                text[i] -= 65; // reduzo todos os caracteres alfabéticos (maiúsculos e minúsculos) em correspondência com valores de 0 a 25
                 // printf("%i", text[i]);
 
-                cipher[i] = ((text[i]) + chave) % 26;
-                printf("%c", cipher[i] += 65);
+                cipher[i] = ((text[i]) + chave) % 26; // Algoritmo de César
+                printf("%c", cipher[i] += 65); // imprimo os caracteres (que estavam entre 0 e 25) com os valores da tabela ASCII
                 // printf("\n%c -> %i\n", cipher[i] + 65, cipher[i]);
             }
             else
@@ -49,7 +49,7 @@ int plaintext(int k)
         }
         else
         {
-            cipher[i] = text[i];
+            cipher[i] = text[i]; // o texto cifrado recebe caracteres que não são alfabéticos
             printf("%c", cipher[i]);
         }
     }
@@ -67,6 +67,8 @@ int plaintext(int k)
 
 int main (int argc, char *argv[])
 {
+    // printf("%i", argc);
+    
     char k[c];
     int chave = 0;
 

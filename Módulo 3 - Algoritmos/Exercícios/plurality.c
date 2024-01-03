@@ -1,5 +1,4 @@
-// #include <cs50.h>
-#include <stdbool.h>
+#include <cs50.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -9,8 +8,7 @@
 // Candidates have name and vote count
 typedef struct
 {
-    // string name;
-    char name[10];
+    string name;
     int votes;
 }
 candidate;
@@ -22,10 +20,10 @@ candidate candidates[MAX];
 int candidate_count;
 
 // Function prototypes
-bool vote(char name[], int k);
+bool vote(string name);
 void print_winner(void);
 
-int main(int argc, char *argv[])
+int main(int argc, string argv[])
 {
     // Check for invalid usage
     if (argc < 2)
@@ -43,32 +41,19 @@ int main(int argc, char *argv[])
     }
     for (int i = 0; i < candidate_count; i++)
     {
-        /*
         candidates[i].name = argv[i + 1];
         candidates[i].votes = 0;
-        */
-        int n = strlen(argv[i]);
-        for (int j = 0; j < n; j++)
-        {
-            candidates[i].name[j] = argv[i][j];
-            candidates[i].votes = 0;
-        }
-        candidates[i].name[n] = '\0';
     }
 
-    int voter_count = 0;
-    printf("Number of voters: ");
-    scanf("%i", &voter_count);
+    int voter_count = get_int("Number of voters: ");
 
     // Loop over all voters
     for (int i = 0; i < voter_count; i++)
     {
-        char name[10];
-        printf("Vote: ");
-        scanf("%s", name);
+        string name = get_string("Vote: ");
 
         // Check for invalid vote
-        if (!vote(name, argc))
+        if (!vote(name))
         {
             printf("Invalid vote.\n");
         }
@@ -79,17 +64,9 @@ int main(int argc, char *argv[])
 }
 
 // Update vote totals given a new vote
-bool vote(char name[], int k)
+bool vote(string name)
 {
     // TODO
-    for (int i = 1; i < k; i++)
-    {
-        if (strcmp(candidates[i].name, name) == 0)
-        {
-            candidates[i].votes++;
-            return true;
-        }
-    }
     return false;
 }
 

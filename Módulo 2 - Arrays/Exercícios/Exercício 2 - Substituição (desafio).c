@@ -15,8 +15,8 @@ const int l = 1000;
 
 int plaintext(int t, char chave[])
 {
-    char text[l];
-    int cipher[l];
+    char text[l]; // texto simples
+    int cipher[l]; // texto cifrado
     int posicao = 0;
     
     printf("plaintext: ");
@@ -26,6 +26,7 @@ int plaintext(int t, char chave[])
 
     for (int i = 0; i < t; i++)
     {
+        // reduzo todos os caracteres alfabéticos (maiúsculos e minúsculos) em correspondência com valores de 0 a 25
         if (isupper(chave[i]))
         {
             chave[i] -= 65;
@@ -45,6 +46,7 @@ int plaintext(int t, char chave[])
         {
             if (isupper(text[i]))
             {
+                // exemplo: entre 0 e 25, 'O' está na posição 14, mas o texto cifrado recebe a letra que está na posição 14
                 posicao = text[i] -= 65;
                 cipher[i] = chave[posicao];
                 // printf("%c", cipher[i]);
@@ -59,7 +61,7 @@ int plaintext(int t, char chave[])
         }
         else
         {
-            cipher[i] = text[i];
+            cipher[i] = text[i]; // o texto cifrado recebe caracteres que não são alfabéticos
             printf("%c", cipher[i]);
         }
     }
@@ -91,7 +93,7 @@ int main(int argc, char *argv[])
                     }
                 }
                 // printf("%c", k[i]);
-            } else
+            } /* else
             {
                 printf("O argumento fornecido deve conter somente letras\n");
             }
@@ -99,6 +101,7 @@ int main(int argc, char *argv[])
             {
                 printf("O argumento deve ser uma chave de 26 caracteres\n");
             }
+            */
         }
         plaintext(26, k);
     } else

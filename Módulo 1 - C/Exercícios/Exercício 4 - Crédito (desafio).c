@@ -89,12 +89,13 @@ int main(void)
             printf("\nVISA");
         } else
         {
+            // if (priDigito == 3 && (segDigito == 4 || segDigito == 7) && quantDigitos == 15)
             if ((inicioCartao == 34 || inicioCartao == 37) && quantDigitos == 15)
             {
                 printf("\nAMERICAN EXPRESS");
             } else
             {
-                if (priDigito == 5 && (segDigito >=1 && segDigito <=5))
+                if (priDigito == 5 && (segDigito >= 1 && segDigito <= 5) && quantDigitos == 16)
                 {
                     printf("\nMASTERCARD");
                 }

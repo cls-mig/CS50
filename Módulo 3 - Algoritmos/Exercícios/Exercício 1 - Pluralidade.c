@@ -29,9 +29,9 @@ int main (int argc, char *argv[])
             for (int j = 0; j < n; j++)
             {
                 candidato[i].name[j] = argv[i][j]; // atribui o nome dos candidatos vindos do vetor de argumentos
-                candidato[i].votes = 0; // inicializei a contagem dos votos
                 // printf("%c", candidato[i].name[j]);
             }
+            candidato[i].votes = 0; // inicializei a contagem dos votos
             candidato[i].name[n] = '\0';
             // printf("\n");
         }
