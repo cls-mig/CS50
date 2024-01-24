@@ -1,6 +1,7 @@
 // #include <cs50.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 
@@ -29,9 +30,9 @@ int pair_count;
 int candidate_count;
 
 // Function prototypes
-bool vote(int rank, char name, int ranks[]);
-/*
+bool vote(int rank, char *name, int ranks[]);
 void record_preferences(int ranks[]);
+/*
 void add_pairs(void);
 void sort_pairs(void);
 void lock_pairs(void);
@@ -47,13 +48,14 @@ int main(int argc, char *argv[])
     }
 
     // Populate array of candidates
-    candidate_count = argc;
+    candidate_count = argc - 1;
+    // printf("%i", candidate_count);
     if (candidate_count > MAX)
     {
         printf("Maximum number of candidates is %i\n", MAX);
         return 2;
     }
-    for (int i = 1; i < candidate_count; i++)
+    for (int i = 1; i <= candidate_count; i++)
     {
         int n = strlen(argv[i]);
         for (int j = 0; j < n; j++)
@@ -64,8 +66,10 @@ int main(int argc, char *argv[])
         candidates[i][n] = '\0';
         // printf("\n");
     }
-
     /*
+    - a aresta aponta para quem perde nesse duelo (o vencedor é a fonte do gráfico)
+    - se houver ciclos, devê-se ordenar os pares baseado na diferença entre as vitórias, o menor valor dessa difereça não é considerado
+    */
     // Clear graph of locked in pairs
     for (int i = 0; i < candidate_count; i++)
     {
@@ -76,7 +80,9 @@ int main(int argc, char *argv[])
     }
 
     pair_count = 0;
-    int voter_count = get_int("Number of voters: ");
+    int voter_count;
+    printf("Number of voters: ");
+    scanf("%i", &voter_count);
 
     // Query for votes
     for (int i = 0; i < voter_count; i++)
@@ -87,11 +93,14 @@ int main(int argc, char *argv[])
         // Query for each rank
         for (int j = 0; j < candidate_count; j++)
         {
-            char *name = get_string("Rank %i: ", j + 1);
+            char *name = malloc(10);
+            printf("Rank %i: ", j + 1);
+            scanf("%s", name);
 
             if (!vote(j, name, ranks))
             {
                 printf("Invalid vote.\n");
+                free(name);
                 return 3;
             }
         }
@@ -100,30 +109,43 @@ int main(int argc, char *argv[])
 
         printf("\n");
     }
-
+    /*
     add_pairs();
     sort_pairs();
     lock_pairs();
     print_winner();
-    return 0;
     */
+    return 0;
 }
 
 // Update ranks given a new vote
-bool vote(int rank, char name, int ranks[])
+bool vote(int rank, char *name, int ranks[])
 {
     // TODO
+    // printf("vote\n");
+
+    for (int i = 1; i <= candidate_count; i++)
+    {
+        // printf("%s\n", candidates[i]);
+        if (strcmp(name, candidates[i]) == 0)
+        {
+            ranks[rank] = i;
+            rank++;
+            return true;
+        }
+    }
+
     return false;
 }
 
-/*
 // Update preferences given one voter's ranks
 void record_preferences(int ranks[])
 {
     // TODO
+    printf("\nrecord_references");
     return;
 }
-
+/*
 // Record pairs of candidates where one is preferred over the other
 void add_pairs(void)
 {
