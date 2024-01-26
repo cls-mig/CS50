@@ -9,13 +9,25 @@ typedef struct node
 }
 node;
 
+/*
+Estruturas de Dados (blocos de construção)
+- listas vinculadas (estrutura de dados unidimensional)
+- árvore de pesquisa binária (estrutura de dados bidimensional)
+- estrutura de dados recursiva
+- hash tables -> array de listas vinculadas
+- trie -> é uma árvore composta de arrays
+- estruturas de dados abstratas:
+    - queues -> filas (PEPS/FIFO - o primiero a entrar é o primeiro a sair)
+    - stacks -> pilhas  (UEPS/FIFO - o último a entrar é o primeiro a sair)
+    - dictionaries
+*/
 
 int main(void)
 {
     node *list = NULL;
 
     node *n = malloc(sizeof(node)); // um espaço de memória de um nó (node), onde cabe um inteiro e o ponteiro para um nó (outro inteiro)
-    if (n == NULL) // quando não é encontrado espaço de memória suficiente
+    if (n == NULL) // quando não é encontrado espaço de memória disponível (o malloc "falha")
     {
         return 1;
     }
@@ -59,4 +71,16 @@ int main(void)
     list->next->next = n;
 
     // ...
+
+    for (node *tmp = list; tmp != NULL; tmp = tmp->next)
+    {
+        printf("%i\n", tmp->number);
+    }
+
+    while (list != NULL)
+    {
+        node *tmp = list->next; // utiliza tmp para sempre olhar um passo a frente
+        free(list);
+        list = tmp;
+    }
 }

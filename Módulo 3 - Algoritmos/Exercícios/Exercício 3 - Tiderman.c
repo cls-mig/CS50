@@ -48,19 +48,22 @@ int main(int argc, char *argv[])
     }
 
     // Populate array of candidates
-    candidate_count = argc - 1;
+    candidate_count = argc - 1; // quantidade de argumentos menos o primeiro argumento (./'Tiderman.exe')
+
     // printf("%i", candidate_count);
     if (candidate_count > MAX)
     {
         printf("Maximum number of candidates is %i\n", MAX);
         return 2;
     }
-    for (int i = 1; i <= candidate_count; i++)
+    
+    for (int i = 0; i < candidate_count; i++)
     {
-        int n = strlen(argv[i]);
+        int n = strlen(argv[i + 1]);
+
         for (int j = 0; j < n; j++)
         {
-            candidates[i][j] = argv[i][j];
+            candidates[i][j] = argv[i + 1][j];
             // printf("%c", candidates[i][j]);
         }
         candidates[i][n] = '\0';
@@ -94,7 +97,7 @@ int main(int argc, char *argv[])
         for (int j = 0; j < candidate_count; j++)
         {
             char *name = malloc(10);
-            printf("Rank %i: ", j + 1);
+            printf("Rank %i: ", j);
             scanf("%s", name);
 
             if (!vote(j, name, ranks))
@@ -104,7 +107,12 @@ int main(int argc, char *argv[])
                 return 3;
             }
         }
-
+        /*
+        for (int i = 0; i < candidate_count; i++)
+        {
+            printf("%i\n", ranks[i]);
+        }
+        */
         record_preferences(ranks);
 
         printf("\n");
@@ -121,10 +129,9 @@ int main(int argc, char *argv[])
 // Update ranks given a new vote
 bool vote(int rank, char *name, int ranks[])
 {
-    // TODO
     // printf("vote\n");
 
-    for (int i = 1; i <= candidate_count; i++)
+    for (int i = 0; i < candidate_count; i++)
     {
         // printf("%s\n", candidates[i]);
         if (strcmp(name, candidates[i]) == 0)
@@ -141,9 +148,40 @@ bool vote(int rank, char *name, int ranks[])
 // Update preferences given one voter's ranks
 void record_preferences(int ranks[])
 {
-    // TODO
-    printf("\nrecord_references");
-    return;
+    // nessa etapa o ChatGPT me ajudou porque eu estava com muita dificuldade, mas eu vou tentar narrar o que ele fez, como uma forma de compensar o fato de eu não ter conseguido fazer
+    /*
+    1° - as coordenadas de preferences já são os números dos candidados no array ranks, ou seja, preferences[2][0] é o candidato de número 2 sobre o candidato de número 0
+    2° - a variável 'preferido' armazena a primeira preferência do eleitor
+    3° - a variável 'menos_preferido' armazena a próxima preferência do eleitor em relação ao ranks[i], sendo j = i + 1, ou seja:
+       - preferido = ranks[0] (i = 0)
+       - menos prefeiro = ranks[1] (j = i + 1)
+       - ...
+       - assim são formados os pares dos números de candidatos (preferido, menos_preferido)
+    4° - cada par já é uma coordenada da matriz preferences, ou seja, se para um eleitor X o candidado 1 é melhor que o candidato 0, é formado um par (1, 0), nisso, na matriz preferences as coordenadas (1, 0) reprensentam essa relação (toda relaçào recebe +1).
+    */
+    for (int i = 0; i < candidate_count; i++)
+    {
+        for (int j = 0; j < candidate_count; j++)
+        {
+            int preferido = ranks[i];
+            int menos_preferido = ranks[j];
+            // printf("(%i, %i)\n", ranks[i], ranks[j]);
+            
+            // a função aumenta a contagem de preferência para o candidato preferido sobre o candidato menos preferido na matriz 'preferences'
+            preferences[preferido][menos_preferido]++;
+            return;
+        }
+    }
+    /*
+    for (int i = 0; i < candidate_count; i++)
+    {
+        for (int j = 0; j < candidate_count; j++)
+        {
+            printf("- %i (%i, %i) ", preferences[i][j], i, j);
+        }
+        printf("-\n");
+    }
+    */
 }
 /*
 // Record pairs of candidates where one is preferred over the other
