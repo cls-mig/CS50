@@ -32,8 +32,8 @@ int candidate_count;
 // Function prototypes
 bool vote(int rank, char *name, int ranks[]);
 void record_preferences(int ranks[]);
-/*
 void add_pairs(void);
+/*
 void sort_pairs(void);
 void lock_pairs(void);
 void print_winner(void);
@@ -117,8 +117,9 @@ int main(int argc, char *argv[])
 
         printf("\n");
     }
-    /*
+    
     add_pairs();
+    /*
     sort_pairs();
     lock_pairs();
     print_winner();
@@ -150,7 +151,7 @@ void record_preferences(int ranks[])
 {
     // nessa etapa o ChatGPT me ajudou porque eu estava com muita dificuldade, mas eu vou tentar narrar o que ele fez, como uma forma de compensar o fato de eu não ter conseguido fazer
     /*
-    1° - as coordenadas de preferences já são os números dos candidados no array ranks, ou seja, preferences[2][0] é o candidato de número 2 sobre o candidato de número 0
+    1° - as coordenadas de preferences já são os números dos candidatos no array ranks, ou seja, preferences[2][0] é o candidato de número 2 sobre o candidato de número 0
     2° - a variável 'preferido' armazena a primeira preferência do eleitor
     3° - a variável 'menos_preferido' armazena a próxima preferência do eleitor em relação ao ranks[i], sendo j = i + 1, ou seja:
        - preferido = ranks[0] (i = 0)
@@ -161,7 +162,7 @@ void record_preferences(int ranks[])
     */
     for (int i = 0; i < candidate_count; i++)
     {
-        for (int j = 0; j < candidate_count; j++)
+        for (int j = i + 1; j < candidate_count; j++)
         {
             int preferido = ranks[i];
             int menos_preferido = ranks[j];
@@ -169,10 +170,9 @@ void record_preferences(int ranks[])
             
             // a função aumenta a contagem de preferência para o candidato preferido sobre o candidato menos preferido na matriz 'preferences'
             preferences[preferido][menos_preferido]++;
-            return;
         }
     }
-    /*
+    
     for (int i = 0; i < candidate_count; i++)
     {
         for (int j = 0; j < candidate_count; j++)
@@ -181,16 +181,37 @@ void record_preferences(int ranks[])
         }
         printf("-\n");
     }
-    */
+
+    return;
 }
-/*
+
 // Record pairs of candidates where one is preferred over the other
 void add_pairs(void)
 {
     // TODO
+    /*
+    - eu preciso montar um par entre cada um dos candidatos e verificar par por par quem é o vencedor, preenchendo o array pairs[]
+    */
+
+    for (int i = 0; i < candidate_count; i++)
+    {
+        for (int j = i + 1; j < candidate_count; j++)
+        {
+            if (preferences[i][j] > preferences[j][i])
+            {
+                printf("Par: (%i, %i)\n", i, j);
+                printf("Candidato %i ganha Candidato %i\n", i, j);
+            } else
+            {
+                printf("Par: (%i, %i)\n", j, i);
+                printf("Candidato %i ganha Candidato %i\n", j, i);
+            }
+        }
+    }
+
     return;
 }
-
+/*
 // Sort pairs in decreasing order by strength of victory
 void sort_pairs(void)
 {
