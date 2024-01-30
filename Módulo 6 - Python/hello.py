@@ -32,3 +32,7 @@ for i in range(3):
 - dict (dicionário; permite armazenar quaisquer chaves e valores)
 - set (conjutos onde não há elementos repetidos)
 '''
+
+'''
+- Python é um programa que traduz o código (alto nível) em código de máquina, e isso tem um preço já que ao traduzir, é consumido tempo e memória (ao preço de uma linguagem mais simples, porém, que precisa ser sempre traduzida/interpretada)
+'''
