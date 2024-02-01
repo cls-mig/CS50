@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdlib.h>
 
 // Legibilidade
 /*
@@ -11,13 +12,24 @@
     index = 0.0588 * L - 0.296 * S - 15.8
 */
 
-const int c = 1000;
+// const int c = 1000;
 
 int main (void)
 {
+    /*
     char texto[c];
     printf("Texto: ");
     scanf("\n%1000[^\n]", texto);
+    */
+
+    // atualização do código após o conteúdo do módulos 4 e 5
+    printf("Texto: ");
+    char *texto = malloc(1000);
+    scanf("%[^\n]", texto); // %[^\n] - lê os espaços de uma string (ainda não entendo exatamente essa sintaxe)
+    /*
+    * - vá para aquele endereço (no caso, da variável)
+    & - me retorne o endereço dessa variável (... = &variavel)
+    */
 
     int letras = 0;
     int palavras = 1;
@@ -44,7 +56,7 @@ int main (void)
         {
             letras++;
         } else
-        if (texto[i] == ' ') // isspace(texto[i])
+        if (texto[i] == ' ') // isspace(texto[i]) - verifica se essa posição no texo[i] é um espaço
         {
             palavras++;
         }
@@ -78,4 +90,6 @@ int main (void)
             printf("\nGrade: %.0f", indice);
         }
     }
+
+    free(texto);
 }

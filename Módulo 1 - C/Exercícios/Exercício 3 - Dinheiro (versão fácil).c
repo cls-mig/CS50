@@ -52,11 +52,11 @@ int main()
     do
     {
         printf("Quanto dinheiro sobrou? ");
-        scanf("%f", &centavos);
+        scanf("%f", &centavos); // & indica o espaço da variável (centavos) que vai receber a entrada do usuário
         // printf("%.2f", valor);
     } while (centavos <= 0);
     
-    reais = round(centavos * 100);
+    reais = round(centavos * 100); // é amplamente utilizado para arredondar números em C. Ele recebe dois parâmetros: o número a ser arredondado e o número de casas decimais para arredondar (ex.: 2.56 * 100 = 256)
     printf("%i\n", reais);
 
     moedas = calcularMoedas(reais);

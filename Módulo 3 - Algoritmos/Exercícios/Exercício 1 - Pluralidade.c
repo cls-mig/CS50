@@ -3,6 +3,8 @@
 #include <stdbool.h>
 #include <ctype.h>
 
+// por falta de atenção não utilizei o código pronto que eles oferecem, então esse exercício eu acabei fazendo por mim mesmo
+
 typedef struct
 {
     char name[10];
@@ -44,7 +46,13 @@ int main (int argc, char *argv[])
             printf("Vote: ");
             scanf("%s", candidate_name);
             // int n = strlen(candidate_name);
-            vote(candidato, candidate_name, argc);
+
+            // mudança baseada nos exercícios subsequentes
+            if (!vote(candidato, candidate_name, argc))
+            {
+                printf("Invalid vote.\n");
+                return 1;
+            }
         }
 
         // variável que recebe os votos do primeiro candidato

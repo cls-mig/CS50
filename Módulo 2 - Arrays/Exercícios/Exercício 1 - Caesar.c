@@ -25,6 +25,7 @@ int plaintext(int k)
         isalpha - se o caractere é alfabético
         isupper - se o caractere é maiúsculo
         islower - se o caractere é minúsculo
+        isspace - se o caractere é um espaço
         */
         if (isalpha(text[i]))
         {
@@ -33,7 +34,7 @@ int plaintext(int k)
                 text[i] -= 65; // reduzo todos os caracteres alfabéticos (maiúsculos e minúsculos) em correspondência com valores de 0 a 25
                 // printf("%i", text[i]);
 
-                cipher[i] = ((text[i]) + chave) % 26; // Algoritmo de César
+                cipher[i] = ((text[i]) + chave) % 26; // aplicando o texto no Algoritmo de César
                 printf("%c", cipher[i] += 65); // imprimo os caracteres (que estavam entre 0 e 25) com os valores da tabela ASCII
                 // printf("\n%c -> %i\n", cipher[i] + 65, cipher[i]);
             }
@@ -96,7 +97,7 @@ int main (int argc, char *argv[])
         }
         */
 
-        chave = atoi(&k[0]);
+        chave = atoi(&k[0]); // converte uma sequência de caracteres em número inteiro
         // printf("\n%i", chave);
         plaintext(chave);
     } else

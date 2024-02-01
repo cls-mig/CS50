@@ -4,11 +4,11 @@
 #include <ctype.h>
 
 /*
-é necessário fornecer somente um argumento, sendo ele a chave
-a chave pode ser tanto escrito em letras maiúsculas quanto em minúsculas
-não pode ser forncida uma chave menor que 26 caracteres
-não pode ser usado caracteres numéricos
-não pode ser usado caracteres alfabéticos repetidos
+- é necessário fornecer somente um argumento, sendo ele a chave
+- a chave pode ser tanto escrito em letras maiúsculas quanto em minúsculas
+- não pode ser forncida uma chave menor que 26 caracteres
+- não pode ser usado caracteres numéricos
+- não pode ser usado caracteres alfabéticos repetidos
 */
 
 const int l = 1000;
@@ -26,7 +26,7 @@ int plaintext(int t, char chave[])
 
     for (int i = 0; i < t; i++)
     {
-        // reduzo todos os caracteres alfabéticos (maiúsculos e minúsculos) em correspondência com valores de 0 a 25
+        // reduzo todos os caracteres alfabéticos (maiúsculos e minúsculos) da chave em correspondência com valores de 0 a 25
         if (isupper(chave[i]))
         {
             chave[i] -= 65;
@@ -85,9 +85,9 @@ int main(int argc, char *argv[])
             {
                 k[i] = argv[1][i];
                 // printf("%i\n", i);
-                for (int v = 0; v < i; v++)
+                for (int j = 0; j < i; j++)
                 {
-                    if (k[v] == k[i])
+                    if (k[j] == k[i])
                     {
                         printf("A chave deve conter letras diferentes\n");
                     }

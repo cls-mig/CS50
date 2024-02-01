@@ -5,6 +5,8 @@
 #include <string.h>
 #include <ctype.h>
 
+// esse exercício produz resultados, mas ainda não está finalizado...
+
 // Max number of candidates
 #define MAX 9
 
@@ -140,7 +142,6 @@ bool vote(int rank, char *name, int ranks[])
             return true;
         }
     }
-
     return false;
 }
 
@@ -180,7 +181,6 @@ void record_preferences(int ranks[])
         }
         printf("-\n");
     }
-
     return;
 }
 
@@ -226,7 +226,6 @@ void add_pairs(void)
                 }
         }
     }
-
     return;
 }
 
@@ -250,7 +249,6 @@ void sort_pairs(void)
     {
         printf("strong_pair[%i]: %i\n", j, strong_pair[j]);
     }
-
     return;
 }
 
@@ -287,7 +285,6 @@ void lock_pairs(void)
         }
         printf("-\n");
     }
-
     return;
 }
 
@@ -309,7 +306,6 @@ void print_winner(void)
         }
         number_true[i] = n;
     }
-
     for (int i = 0; i < pair_count; i++)
     {
         if (number_true[i] > (candidate_count / 2))
@@ -317,6 +313,5 @@ void print_winner(void)
             printf("%s is winner!\n", candidates[i]);
         }
     }
-
     return;
 }

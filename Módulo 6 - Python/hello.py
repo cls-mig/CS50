@@ -19,6 +19,9 @@ while i < 3:
 # for i in [0, 1, 2]:
 for i in range(3):
     print("hello, world")
+    
+for i in range(0, 101, 2):
+    printf("hello, world " + i)
 
 # Tipos de dados:
 - bool

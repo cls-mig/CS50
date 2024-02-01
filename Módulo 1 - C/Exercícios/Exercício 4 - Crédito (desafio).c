@@ -48,8 +48,7 @@ int main(void)
             segDigito = digitoCartao;
         }
         
-        // m verifica quais dígitos serão multiplicados por 2
-        m++;
+        m++; // m verifica quais dígitos serão multiplicados por 2
 
         if (m % 2 == 0)
         {

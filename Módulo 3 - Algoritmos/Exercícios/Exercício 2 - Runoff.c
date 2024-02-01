@@ -66,6 +66,7 @@ int main(int argc, char *argv[])
         {
             candidates[i].name[j] = argv[i + 1][j];
         }
+        // inicializando os candidatos
         candidates[i].name[n] = '\0';
         candidates[i].votes = 0;
         candidates[i].eliminated = false;
@@ -98,7 +99,6 @@ int main(int argc, char *argv[])
                 return 4;
             }
         }
-
         printf("\n");
     }
 
