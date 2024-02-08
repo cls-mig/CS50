@@ -5,7 +5,7 @@
 #include <string.h>
 #include <ctype.h>
 
-// esse exercício produz resultados, mas ainda não está finalizado...
+// esse, por enquanto, é o exercício mais difícil que eu fiz até agora
 
 // Max number of candidates
 #define MAX 9
@@ -26,7 +26,7 @@ pair;
 
 // Array of candidates
 char candidates[MAX][MAX];
-pair pairs[MAX * (MAX - 1) / 2];
+pair pairs[MAX * (MAX - 1) / 2]; // quantidade de estruturas
 
 int pair_count;
 int candidate_count;
@@ -148,7 +148,7 @@ bool vote(int rank, char *name, int ranks[])
 // Update preferences given one voter's ranks
 void record_preferences(int ranks[])
 {
-    // nessa etapa o ChatGPT me ajudou porque eu estava com muita dificuldade, mas eu vou tentar narrar o que ele fez, como uma forma de compensar o fato de eu não ter conseguido fazer
+    // nessa etapa o ChatGPT me ajudou porque eu estava com muita dificuldade, mas eu vou tentar explicar o que ele fez, como uma forma de compensar o fato de eu não ter conseguido fazer
     /*
     1° - as coordenadas de preferences já são os números dos candidatos no array ranks, ou seja, preferences[2][0] é o candidato de número 2 sobre o candidato de número 0
     2° - a variável 'preferido' armazena a primeira preferência do eleitor
@@ -159,7 +159,7 @@ void record_preferences(int ranks[])
        - assim são formados os pares dos números de candidatos (preferido, menos_preferido)
     4° - cada par já é uma coordenada da matriz preferences, ou seja, se para um eleitor X o candidado 1 é melhor que o candidato 0, é formado um par (1, 0), nisso, na matriz preferences as coordenadas (1, 0) reprensentam essa relação (toda relaçào recebe +1).
     */
-    printf("\narecord_preferences\n");
+    printf("\nrecord_preferences\n");
     for (int i = 0; i < candidate_count; i++)
     {
         for (int j = i + 1; j < candidate_count; j++)
@@ -187,18 +187,16 @@ void record_preferences(int ranks[])
 // Record pairs of candidates where one is preferred over the other
 void add_pairs(void)
 {
-    // TODO
     /*
     - eu preciso montar um par entre cada um dos candidatos e verificar par por par quem é o vencedor, preenchendo o array pairs[]
     */
-    printf("\nadd_pairs\n");
+    printf("add_pairs\n");
     for (int i = 0; i < candidate_count; i++)
     {
         for (int j = i + 1; j < candidate_count; j++)
         {
             if (preferences[i][j] > preferences[j][i])
             {
-                
                 printf("pair: (%i, %i) -> ", i, j);
                 printf("Candidato %i ganha o Candidato %i\n", i, j);
                 
@@ -208,7 +206,6 @@ void add_pairs(void)
             } else
                 if (preferences[i][j] < preferences[j][i])
                 {
-                    
                     printf("pair: (%i, %i) -> ", j, i);
                     printf("Candidato %i ganha o Candidato %i\n", j, i);
                     
@@ -232,55 +229,60 @@ void add_pairs(void)
 // Sort pairs in decreasing order by strength of victory
 void sort_pairs(void)
 {
-    // TODO
     /*
     tirar a diferença entre os pares de vitória e classificar em ordem, da maior diferença, para a menor diferença
     */
-    int strong_pair[pair_count];
-    int n = 0;
+    // printf("\nsort_pairs\n");
+    int strong[pair_count], n = 0;
 
-    printf("\nsort_pairs\n");
     for (int i = 0; i < pair_count; i++)
     {
-        strong_pair[i] = preferences[pairs[i].winner][pairs[i].loser] - preferences[pairs[i].loser][pairs[i].winner];
-        n++;
+        strong[i] = preferences[pairs[i].winner][pairs[i].loser] - preferences[pairs[i].loser][pairs[i].winner];
     }
-    for (int j = 0; j < n; j++)
+    /*
+    Bubble sort - funciona movendo o maior elemento para a posição correta em cada iteração, "borbulhando" lentamente os elementos maiores para o final do vetor
+    */
+    for (int i = 0; i < pair_count; i++)
     {
-        printf("strong_pair[%i]: %i\n", j, strong_pair[j]);
+        for (int j = i; j < pair_count; j++)
+        {
+            if (strong[i] < strong[j])
+            {
+                n = strong[i];
+                strong[i] = strong[j];
+                strong[j] = n;
+            }
+        }
     }
+    /*
+    for (int j = 0; j < pair_count; j++)
+    {
+        printf("strong[%i]: %i\n", j, strong[j]);
+    }
+    */
     return;
 }
 
 // Lock pairs into the candidate graph in order, without creating cycles
 void lock_pairs(void)
 {
-    // TODO
     /*
-    adicionar true na matriz lock, cujas coordenadas são o candidato que vem o outro
+    adicionar true na matriz lock, cujas coordenadas são o candidato que vencem o outro
     */
     printf("\nlock_pairs\n");
     for (int i = 0; i < pair_count; i++)
     {
         printf("pair: (%i, %i)\n", pairs[i].winner, pairs[i].loser);
+        locked[pairs[i].winner][pairs[i].loser] = true;
     }
-    
     for (int i = 0; i < candidate_count; i++)
     {
         for (int j = 0; j < candidate_count; j++)
         {
-            locked[i][j] = false;
-            if (locked[i][j] == locked[pairs[i].winner][pairs[i].loser])
+            if (!(locked[i][j] == true))
             {
-                locked[pairs[i].winner][pairs[i].loser] = true;
+                locked[i][j] = false;
             }
-        }
-    }
-
-    for (int i = 0; i < candidate_count; i++)
-    {
-        for (int j = 0; j < candidate_count; j++)
-        {
             printf("- %i (%i, %i) ", locked[i][j], i, j);
         }
         printf("-\n");
@@ -291,27 +293,8 @@ void lock_pairs(void)
 // Print the winner of the election
 void print_winner(void)
 {
-    // TODO
-    int number_true[pair_count];
-    int n = 0;
+    printf("\nprint_winner\n");
+    
 
-    for (int i = 0; i < candidate_count; i++)
-    {
-        for (int j = 0; j < candidate_count; j++)
-        {
-            if (locked[i][j] == true)
-            {
-                n++;
-            }
-        }
-        number_true[i] = n;
-    }
-    for (int i = 0; i < pair_count; i++)
-    {
-        if (number_true[i] > (candidate_count / 2))
-        {
-            printf("%s is winner!\n", candidates[i]);
-        }
-    }
     return;
 }
