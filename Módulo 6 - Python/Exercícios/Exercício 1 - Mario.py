@@ -10,7 +10,7 @@ def construtor(alt):
     for i in range(alt, 0, -1): # de valores maiores para valores menores é necessário colocar o passo, ou seja, o decremento
         for j in range(i, 1, -1):
             print(" ", end="")
-        for k in range((alt + 1) - i):
+        for k in range((alt + 1) - i): # alt = 5 e i = 5 (isso na primeira repetição), subtraindo resulta em 0, por isso eu acrescento 1 em alt
             print("#", end="") # end="" é responsável por alterar esse comportamento, possibilitando ao desenvolvedor trocar qual caracter será adicionado ao final do dado impresso no terminal
         print()
 
