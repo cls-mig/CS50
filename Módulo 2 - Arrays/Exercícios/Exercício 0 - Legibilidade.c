@@ -84,10 +84,10 @@ int main (void)
     } else {
         if (indice >= 16)
         {
-            printf("\nGrade: 16+");
+            printf("\nGrade 16+");
         } else
         {
-            printf("\nGrade: %.0f", indice);
+            printf("\nGrade %.0f", indice);
         }
     }
 
