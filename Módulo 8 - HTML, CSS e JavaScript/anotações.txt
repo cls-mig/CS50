@@ -1,0 +1,29 @@
+**Módulo 8 - HTML, CSS e JavaScript (anotações)**
+
+internet - protocolo - TCP/IP
+
+protocolo - é uma convenção (padrão)
+
+TCP/IP:
+IP - Internet Protocol (um número que representa o endereço da máquina/servidor)
+   - padroniza o que é escrito nos "envelopes"
+TCP - controle de transmissão de protocolo (rege várias coisas)
+    - garante também a entrega das informações do ponto A para o ponto B
+    PORT - numerações que representam serviços
+
+DNS - nomes para os endereços IP
+
+- quando um pacote é dividido em pequenas informações, é preciso saber a ordem em que serão enviadas
+
+HTTP - Protocolo de Transferência de Hipertext
+     - o que está dentro dos envelopes
+     - coamndos suportados:
+        - GET (solicita informações)
+        - POST
+     - 1.1, 2, 3 (versões do HTTP)
+     - possui um cabeçalho
+        - www (denota que o endereço é de um servidor web)
+        - .com, .edu, .org, etc. (se refere ao tipo de site que você quer acessar)
+        - códigos de status de resposta HTTP (...200, 202, 301, 404...)
+
+URL - Uniform Resource Locations
