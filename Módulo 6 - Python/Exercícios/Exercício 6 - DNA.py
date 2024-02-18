@@ -18,7 +18,7 @@ from sys import argv
 - criar um dicionário, onde eu tenho uma chave sendo a sequeência str determinada e o seu valor (quantidade) relacioandas
     STR = {
         "AGATC": 4,
-        "AATG": 2
+        "AATG": 2,
         ...
     }
 '''
