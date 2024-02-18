@@ -76,7 +76,7 @@ def readerSequences(seq):
                 while (genoma[i:i + len(seq)] == seq):
                     qtd_seq += 1
                     i += len(seq)
-                vet_qtd.append(qtd_seq) # valor que vai adicionar por último
+                vet_qtd.append(qtd_seq) # valor que será adicionado por último na list vet_seq
             qtd_seq = 0
             '''
             else:
