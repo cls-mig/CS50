@@ -47,7 +47,7 @@ def main():
         
         # print(STR)
         
-        # next(table) # pula a primeira linha (cabeçalho)
+        # next(table) - pula a primeira linha (cabeçalho)
         data = list()
         value = list()
 
@@ -68,7 +68,7 @@ def main():
 def readerSequences(seq):
     qtd_seq = 0
     vet_qtd = list()
-    with open(f"dna/sequences/{argv[2]}", "r") as sequences: # variável que receve o conteúdo do aquivo.txt
+    with open(f"dna/sequences/{argv[2]}", "r") as sequences: # variável que recebe o conteúdo do aquivo.txt
     # with open(f"{test/argv[2]}", "r") as sequences:
         genoma = sequences.read()
         for i in range(0, len(genoma)): # pegar o comprimento de uma string
