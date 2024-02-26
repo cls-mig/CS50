@@ -16,8 +16,25 @@ def main():
 
     teams = []
     # TODO: Read teams into memory from file
+    with open(f"lab6/{sys.argv[1]}", mode="r") as file:
+        teams_reader = csv.DictReader(file) # recebe o csv e atribui ao teams_reader
+        '''
+        o csv.DictReader automaticamente trata a primeira linha do arquivo CSV como cabeçalho e não inclui esses dados na iteração. Ele usa esses cabeçalhos para criar as chaves dos dicionários para cada linha subsequente.
+        '''
+        for linha in teams_reader: # percorre o teams_reader 
+            rating = int(linha["rating"])
+            linha["rating"] = rating
+            teams.append(linha)
+    # print(teams)
 
-    counts = {}
+    counts = {
+        
+    }
+    
+    for i in range(len(teams) - 1): # eu sempre preciso de uma sequência de inteiros para percorrer ela
+        winner = simulate_game(teams[i], teams[i + 1])
+        print(f"{i} - {winner}")
+    
     # TODO: Simulate N tournaments and keep track of win counts
 
     # Print each team's chances of winning, according to simulation
