@@ -1,0 +1,87 @@
+<!--
+    Módulo 8 - HTML, CSS e JavaScript
+
+    internet - protocolo - TCP/IP
+
+    protocolo - é uma convenção (padrão)
+
+    TCP/IP:
+    IP - Internet Protocol (um número que representa o endereço da máquina/servidor)
+    - padroniza o que é escrito nos "envelopes"
+    TCP - controle de transmissão de protocolo (rege várias coisas)
+        - garante também a entrega das informações do ponto A para o ponto B
+        PORT - numerações que representam serviços
+
+    DNS - nomes para os endereços IP
+
+    - quando um pacote é dividido em pequenas informações, é preciso saber a ordem em que serão enviadas
+
+    HTTP - Protocolo de Transferência de Hipertext
+        - o que está dentro dos envelopes
+        - coamndos suportados:
+            - GET (solicita informações)
+            - POST -> esconde as informações da URL (como forma de segurança)
+        - 1.1, 2, 3 (versões do HTTP)
+        - possui um cabeçalho
+            - www (denota que o endereço é de um servidor web)
+            - .com, .edu, .org, etc. (se refere ao tipo de site que você quer acessar)
+            - códigos de status de resposta HTTP (...200, 202, 301, 404...)
+
+    URL - Uniform Resource Locations
+
+    Phishing é um ataque que tenta roubar seu dinheiro ou a sua identidade fazendo com que você revele informações pessoais, tais como números de cartão de crédito, informações bancárias ou senhas em sites que fingem ser legítimos.
+
+    HTML - Hipertext Markup Language
+    CSS - Cascading Style Sheets (alteraçÃo nas tags "pai" resulta na alteração das tags "filho")
+    JavaScript - linguagem que proporciona a dinamicidade das páginas web
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>hello, title</title>
+        <script>
+            function greet()
+            {
+                // DOM (árvore) - Document Object Model
+                let name = document.querySelector('#name').value; // permite que eu selecione qualquer elemento HTML
+                /*
+                doucment - variável global que me da acesso as coisas relacionadas ao documento da página web
+                querySelector() - colocar um seletor CSS entre aspas (faz parte da estrutura da página)
+                */
+                alert('hello, ' + name);
+            }
+
+            function listen()
+            {
+                document.querySelector('form').addEventListener('submit', greet) // permite "escutar" os eventos que ocorrem na página
+            }
+
+            document.addEventListener('DOMContentLoaded', listen); // espera a página carregar
+            /*
+            // funções dentro de funções, sem precisar declará-las
+            document.addEventListener('DOMContentLoaded', function() {
+                document.querySelector('form').addEventListener('submit', function() {
+                    let name = document.querySelector('#name').value; // permite que eu selecione qualquer elemento HTML
+                    alert('hello, ' + name);
+                })
+            });
+            */
+        </script>
+    </head>
+    <body>
+        <form>
+            <input id="name" autocomplete="off" autofocus placeholder="What's your name?" type="text">
+            <input type="submit" value="Greet Me">
+        </form>
+        <!--
+        <form onsubmit="greet(); return false"> // chame a função mas não envie para o servidor
+            <input id="name" autocomplete="off" autofocus placeholder="What's your name?" type="text">
+                /*
+                autocomplete - remove ou adiciona o completar de texto automaticamente
+                autofocus - ao abrir a página o campo de texto já estará piscando, pronto para o usuário digitar
+                */
+            <input type="submit" value="Greet Me">
+        </form>
+        -->
+    </body>
+</html>
